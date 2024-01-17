@@ -13,7 +13,12 @@ public class GameManager : MonoBehaviour
     [SerializeField]
     private GameObject victoryPanel = null;
 
+    [SerializeField]
+    private GameObject player = null;
+
     private List<GameObject> coins = new List<GameObject>();
+
+    public Vector3 playerInitialPosition = Vector3.zero;
 
     private int coinsCollected = 0;
 
@@ -35,6 +40,8 @@ public class GameManager : MonoBehaviour
         coinsCollected = 0;
 
         UpdateCoinText();
+
+        player.transform.position = playerInitialPosition;
     }
 
     public void AddCoin(GameObject coin)

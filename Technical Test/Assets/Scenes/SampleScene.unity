@@ -154,6 +154,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   coinsText: {fileID: 2137884993}
   victoryPanel: {fileID: 1110263329}
+  player: {fileID: 895719407}
+  playerInitialPosition: {x: 0, y: 0, z: 0}
 --- !u!4 &122259823
 Transform:
   m_ObjectHideFlags: 0
@@ -1907,6 +1909,63 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: c81038592f8f9974dbb81af49676ed19, type: 3}
+--- !u!1001 &4741266822257472600
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 4741266821914687555, guid: 16d09b9abf708604392e3674ba011417, type: 3}
+      propertyPath: m_RootOrder
+      value: 15
+      objectReference: {fileID: 0}
+    - target: {fileID: 4741266821914687555, guid: 16d09b9abf708604392e3674ba011417, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: -4.6977715
+      objectReference: {fileID: 0}
+    - target: {fileID: 4741266821914687555, guid: 16d09b9abf708604392e3674ba011417, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 1.23
+      objectReference: {fileID: 0}
+    - target: {fileID: 4741266821914687555, guid: 16d09b9abf708604392e3674ba011417, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: -5.0073047
+      objectReference: {fileID: 0}
+    - target: {fileID: 4741266821914687555, guid: 16d09b9abf708604392e3674ba011417, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4741266821914687555, guid: 16d09b9abf708604392e3674ba011417, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4741266821914687555, guid: 16d09b9abf708604392e3674ba011417, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4741266821914687555, guid: 16d09b9abf708604392e3674ba011417, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4741266821914687555, guid: 16d09b9abf708604392e3674ba011417, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4741266821914687555, guid: 16d09b9abf708604392e3674ba011417, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4741266821914687555, guid: 16d09b9abf708604392e3674ba011417, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4741266821914687566, guid: 16d09b9abf708604392e3674ba011417, type: 3}
+      propertyPath: m_Name
+      value: Spikes
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 16d09b9abf708604392e3674ba011417, type: 3}
 --- !u!1001 &6851344898450883748
 PrefabInstance:
   m_ObjectHideFlags: 0

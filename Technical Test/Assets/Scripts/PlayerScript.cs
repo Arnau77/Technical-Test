@@ -13,6 +13,11 @@ public class PlayerScript : TagsScript
 
     private bool isOnGround = false;
 
+    private void Start()
+    {
+        GameManager.instance.playerInitialPosition = transform.position;
+    }
+
     public void Move(InputAction.CallbackContext context)
     {
         Vector2 input = context.ReadValue<Vector2>() * movementSpeed;
@@ -54,6 +59,9 @@ public class PlayerScript : TagsScript
         {
             case Tags.COIN:
                 GameManager.instance.GetCoin();
+                break;
+            case Tags.ENEMY or Tags.SPIKES:
+                GameManager.instance.Restart();
                 break;
         }
     }
