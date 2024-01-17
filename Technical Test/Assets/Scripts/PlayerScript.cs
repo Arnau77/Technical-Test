@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
-public class PlayerScript : MonoBehaviour
+public class PlayerScript : TagsScript
 {
     public Rigidbody playerRigidbody = null;
 
@@ -35,11 +35,38 @@ public class PlayerScript : MonoBehaviour
 
     private void OnCollisionEnter(Collision collision)
     {
-        isOnGround = CheckContactsPoint(collision);
+        if (CheckTags(collision.gameObject) == Tags.GROUND)
+        {
+            isOnGround = CheckContactsPoint(collision);
+        }
     }
     private void OnCollisionExit(Collision collision)
     {
-        isOnGround = CheckContactsPoint(collision);
+        if (CheckTags(collision.gameObject) == Tags.GROUND)
+        {
+            isOnGround = CheckContactsPoint(collision);
+        }
+    }
+
+    private void OnTriggerEnter(Collider other)
+    {
+        switch (CheckTags(other.gameObject))
+        {
+            case Tags.COIN:
+                GameManager.instance.GetCoin();
+                break;
+        }
+    }
+
+    private Tags CheckTags(GameObject gameObject)
+    {
+        TagsScript tags = gameObject.GetComponent<TagsScript>();
+        if (tags == null)
+        {
+            return Tags.NONE;
+        }
+
+        return tags.tags;
     }
 
     private bool CheckContactsPoint(Collision collision)
