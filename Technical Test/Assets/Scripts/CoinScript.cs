@@ -7,7 +7,7 @@ public class CoinScript : TagsScript
     // Start is called before the first frame update
     void Start()
     {
-        GameManager.instance.AddCoin();
+        GameManager.instance.AddCoin(gameObject);
     }
 
     private void OnTriggerEnter(Collider other)
@@ -17,6 +17,6 @@ public class CoinScript : TagsScript
         {
             return;
         }
-        Destroy(gameObject);
+        gameObject.SetActive(false);
     }
 }

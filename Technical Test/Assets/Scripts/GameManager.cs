@@ -13,7 +13,7 @@ public class GameManager : MonoBehaviour
     [SerializeField]
     private GameObject victoryPanel = null;
 
-    private int numOfCoins = 0;
+    private List<GameObject> coins = new List<GameObject>();
 
     private int coinsCollected = 0;
 
@@ -25,35 +25,40 @@ public class GameManager : MonoBehaviour
         }
     }
 
-    // Start is called before the first frame update
-    void Start()
+    public void Restart()
     {
-        
+        foreach(GameObject coin in coins)
+        {
+            coin.SetActive(true);
+        }
+
+        coinsCollected = 0;
+
+        UpdateCoinText();
     }
 
-    // Update is called once per frame
-    void Update()
+    public void AddCoin(GameObject coin)
     {
-        
-    }
-
-    public void AddCoin()
-    {
-        numOfCoins++;
+        coins.Add(coin);
     }
 
     public void GetCoin()
     {
         coinsCollected++;
 
+        UpdateCoinText();
+
+        if (coinsCollected == coins.Count && victoryPanel != null)
+        {
+            victoryPanel.SetActive(true);
+        }
+    }
+
+    private void UpdateCoinText()
+    {
         if (coinsText != null)
         {
             coinsText.text = coinsCollected.ToString();
-        }
-
-        if (coinsCollected == numOfCoins && victoryPanel != null)
-        {
-            victoryPanel.SetActive(true);
         }
     }
 }
