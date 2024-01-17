@@ -10,7 +10,8 @@ public class TagsScript : MonoBehaviour
         GROUND,
         COIN,
         SPIKES,
-        ENEMY
+        ENEMY,
+        MOVING_PLATFORM_CHECKPOINT
     }
 
     public Tags tags = Tags.NONE;
