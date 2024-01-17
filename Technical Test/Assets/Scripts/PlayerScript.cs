@@ -40,14 +40,16 @@ public class PlayerScript : TagsScript
 
     private void OnCollisionEnter(Collision collision)
     {
-        if (CheckTags(collision.gameObject) == Tags.GROUND)
+        Tags collisionTag = CheckTags(collision.gameObject);
+        if (collisionTag == Tags.GROUND || collisionTag == Tags.BUTTON)
         {
             isOnGround = CheckContactsPoint(collision);
         }
     }
     private void OnCollisionExit(Collision collision)
     {
-        if (CheckTags(collision.gameObject) == Tags.GROUND)
+        Tags collisionTag = CheckTags(collision.gameObject);
+        if (collisionTag == Tags.GROUND || collisionTag == Tags.BUTTON)
         {
             isOnGround = CheckContactsPoint(collision);
         }
