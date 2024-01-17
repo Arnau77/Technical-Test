@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
 
 public class GameManager : MonoBehaviour
@@ -7,9 +8,13 @@ public class GameManager : MonoBehaviour
     public static GameManager instance = null;
 
     [SerializeField]
+    private TextMeshProUGUI coinsText = null;
+    
+    [SerializeField]
+    private GameObject victoryPanel = null;
+
     private int numOfCoins = 0;
 
-    [SerializeField]
     private int coinsCollected = 0;
 
     private void Awake()
@@ -39,9 +44,16 @@ public class GameManager : MonoBehaviour
 
     public void GetCoin()
     {
-        if (++coinsCollected == numOfCoins)
+        coinsCollected++;
+
+        if (coinsText != null)
         {
-            Debug.Log("FINISH");
+            coinsText.text = coinsCollected.ToString();
+        }
+
+        if (coinsCollected == numOfCoins && victoryPanel != null)
+        {
+            victoryPanel.SetActive(true);
         }
     }
 }
