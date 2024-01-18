@@ -22,6 +22,17 @@ public class ButtonScript : TagsScript
         buttonMeshRenderer = gameObject.GetComponent<MeshRenderer>();
     }
 
+    private void Start()
+    {
+        GameManager.instance.restartGame.AddListener(Restart);
+    }
+
+    private void Restart()
+    {
+        isButtonActivated = false;
+        ChangeMaterial(buttonDeactivatedMaterial);
+    }
+
     private void OnCollisionEnter(Collision collision)
     {
         if (!CheckIfCollisionIsPlayer(collision.gameObject) && !isButtonActivated)

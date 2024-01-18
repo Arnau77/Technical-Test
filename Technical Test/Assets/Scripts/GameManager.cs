@@ -2,10 +2,13 @@ using System.Collections;
 using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
+using UnityEngine.Events;
 
 public class GameManager : MonoBehaviour
 {
     public static GameManager instance = null;
+
+    public UnityEvent restartGame = new UnityEvent();
 
     [SerializeField]
     private TextMeshProUGUI coinsText = null;
@@ -18,7 +21,8 @@ public class GameManager : MonoBehaviour
 
     private List<GameObject> coins = new List<GameObject>();
 
-    public Vector3 playerInitialPosition = Vector3.zero;
+    private List<GameObject> savedCoins = new List<GameObject>();
+
 
     private int coinsCollected = 0;
 
@@ -30,18 +34,40 @@ public class GameManager : MonoBehaviour
         }
     }
 
-    public void Restart()
+    public void Restart(bool usingCheckpoint)
     {
-        foreach(GameObject coin in coins)
+        victoryPanel.SetActive(false);
+
+        foreach (GameObject coin in coins)
         {
-            coin.SetActive(true);
+            if (!coin.activeInHierarchy && (!usingCheckpoint || !savedCoins.Contains(coin)))
+            {
+                coin.SetActive(true);
+                coinsCollected --;
+            }
         }
 
-        coinsCollected = 0;
+        if (!usingCheckpoint)
+        {
+            savedCoins.Clear();
+        }
+
+        restartGame.Invoke();
 
         UpdateCoinText();
+    }
 
-        player.transform.position = playerInitialPosition;
+    public void Save()
+    {
+        savedCoins.Clear();
+
+        foreach (GameObject coin in coins)
+        {
+            if (!coin.activeInHierarchy)
+            {
+                savedCoins.Add(coin);
+            }
+        }
     }
 
     public void AddCoin(GameObject coin)

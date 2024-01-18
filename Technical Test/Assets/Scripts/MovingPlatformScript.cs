@@ -23,6 +23,14 @@ public class MovingPlatformScript : TagsScript
     {
         initialPosition = transform.position;
         finalPosition = finalTransform.position;
+        GameManager.instance.restartGame.AddListener(Restart);
+    }
+
+    private void Restart()
+    {
+        transform.position = initialPosition;
+        isActivated = false;
+        isReturning = false;
     }
 
     // Update is called once per frame

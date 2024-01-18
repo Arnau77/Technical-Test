@@ -7,6 +7,8 @@ public class PlayerScript : TagsScript
 {
     public Rigidbody playerRigidbody = null;
 
+    public Vector3 initialPosition = Vector3.zero;
+
     private Vector2 movement = Vector2.zero;
 
     public float movementSpeed = 0;
@@ -19,7 +21,17 @@ public class PlayerScript : TagsScript
 
     private void Start()
     {
-        GameManager.instance.playerInitialPosition = transform.position;
+        GameManager.instance.restartGame.AddListener(Restart);
+        initialPosition = transform.position;
+    }
+
+    private void Restart()
+    {
+        transform.position = initialPosition;
+        transform.rotation = Quaternion.identity;
+        movement = Vector2.zero;
+        playerRigidbody.velocity = Vector3.zero;
+        isRotating = 0;
     }
 
     public void Move(InputAction.CallbackContext context)
@@ -94,7 +106,7 @@ public class PlayerScript : TagsScript
                 GameManager.instance.GetCoin();
                 break;
             case Tags.ENEMY or Tags.SPIKES:
-                GameManager.instance.Restart();
+                GameManager.instance.Restart(true);
                 break;
         }
     }
