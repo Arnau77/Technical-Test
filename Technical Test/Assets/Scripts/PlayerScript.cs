@@ -17,8 +17,6 @@ public class PlayerScript : TagsScript
 
     private int isRotating = 0;
 
-    private bool isOnGround = false;
-
     private void Start()
     {
         GameManager.instance.playerInitialPosition = transform.position;
@@ -32,7 +30,7 @@ public class PlayerScript : TagsScript
 
     public void Jump(InputAction.CallbackContext context)
     {
-        if (!context.performed || !isOnGround)
+        if (!context.performed || playerRigidbody.velocity.y != 0)
         {
             return;
         }
@@ -64,23 +62,6 @@ public class PlayerScript : TagsScript
         newVelocity.z += actualMovement.x * transform.right.z;
 
         playerRigidbody.velocity = newVelocity;
-    }
-
-    private void OnCollisionEnter(Collision collision)
-    {
-        Tags collisionTag = CheckTags(collision.gameObject);
-        if (collisionTag == Tags.GROUND || collisionTag == Tags.BUTTON)
-        {
-            isOnGround = CheckContactsPoint(collision);
-        }
-    }
-    private void OnCollisionExit(Collision collision)
-    {
-        Tags collisionTag = CheckTags(collision.gameObject);
-        if (collisionTag == Tags.GROUND || collisionTag == Tags.BUTTON)
-        {
-            isOnGround = CheckContactsPoint(collision);
-        }
     }
 
     private void OnTriggerEnter(Collider other)

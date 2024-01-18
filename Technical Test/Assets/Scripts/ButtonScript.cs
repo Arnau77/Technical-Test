@@ -7,7 +7,20 @@ public class ButtonScript : TagsScript
     [SerializeField]
     private MovingPlatformScript platformToActivate = null;
 
+    private MeshRenderer buttonMeshRenderer = null;
+
+    [SerializeField]
+    private Material buttonDeactivatedMaterial = null;
+
+    [SerializeField]
+    private Material buttonActivatedMaterial = null;
+
     private bool isButtonActivated = false;
+
+    private void Awake()
+    {
+        buttonMeshRenderer = gameObject.GetComponent<MeshRenderer>();
+    }
 
     private void OnCollisionEnter(Collision collision)
     {
@@ -17,6 +30,7 @@ public class ButtonScript : TagsScript
         }
 
         isButtonActivated = true;
+        ChangeMaterial(buttonActivatedMaterial);
         platformToActivate.Activate();
     }
 
@@ -27,6 +41,7 @@ public class ButtonScript : TagsScript
         }
 
         isButtonActivated = false;
+        ChangeMaterial(buttonDeactivatedMaterial);
     }
 
     private bool CheckIfCollisionIsPlayer(GameObject collisionObject)
@@ -39,5 +54,14 @@ public class ButtonScript : TagsScript
         }
 
         return true;
+    }
+
+    private void ChangeMaterial(Material newMaterial)
+    {
+        if (buttonMeshRenderer == null || newMaterial == null)
+        {
+            return;
+        }
+        buttonMeshRenderer.material = newMaterial;
     }
 }
