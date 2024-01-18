@@ -112,4 +112,4 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   tags: 2
-  rotationSpeed: 0.1
+  rotationSpeed: 200

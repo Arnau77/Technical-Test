@@ -14,7 +14,7 @@ public class CoinScript : TagsScript
 
     private void Update()
     {
-        transform.Rotate(Vector3.right, rotationSpeed);
+        transform.Rotate(Vector3.right, rotationSpeed * Time.deltaTime);
     }
 
     private void OnTriggerEnter(Collider other)
