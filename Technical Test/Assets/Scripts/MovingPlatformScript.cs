@@ -36,7 +36,7 @@ public class MovingPlatformScript : TagsScript
         Vector3 newPosition = isReturning ? initialPosition : finalPosition;
         newPosition -= transform.position;
         newPosition.Normalize();
-        newPosition *= speed;
+        newPosition *= speed * Time.deltaTime;
         transform.position += newPosition;
         if (CheckIfPlatformHasArrived(isReturning ? initialPosition : finalPosition))
         {

@@ -12,6 +12,7 @@ public class TagsScript : MonoBehaviour
         SPIKES,
         ENEMY,
         BUTTON,
+        MOVING_PLATFORM,
         MOVING_PLATFORM_CHECKPOINT
     }
 

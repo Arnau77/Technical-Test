@@ -51,6 +51,11 @@ public class PlayerScript : TagsScript
             transform.Rotate(0, rotationAngle * isRotating, 0);
             UpdateMovementDirection(movement);
         }
+
+        if (playerRigidbody.velocity.y != 0)
+        {
+            playerRigidbody.velocity += Vector3.up * Time.deltaTime * Physics.gravity.y * playerRigidbody.mass;
+        }
     }
 
     private void UpdateMovementDirection(Vector2 actualMovement)
@@ -62,6 +67,23 @@ public class PlayerScript : TagsScript
         newVelocity.z += actualMovement.x * transform.right.z;
 
         playerRigidbody.velocity = newVelocity;
+    }
+
+    private void OnCollisionEnter(Collision collision)
+    {
+        if (CheckTags(collision.gameObject) == Tags.MOVING_PLATFORM)
+        {
+            transform.parent = collision.transform;
+        }
+    }
+
+    private void OnCollisionExit(Collision collision)
+    {
+        if (CheckTags(collision.gameObject) == Tags.MOVING_PLATFORM)
+        {
+            transform.parent = null;
+        }
+        UpdateMovementDirection(movement);
     }
 
     private void OnTriggerEnter(Collider other)
