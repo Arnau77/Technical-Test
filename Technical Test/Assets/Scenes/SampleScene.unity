@@ -541,6 +541,7 @@ MonoBehaviour:
   playerRigidbody: {fileID: 895719414}
   movementSpeed: 15
   jumpSpeed: 8
+  rotationAngle: 0.5
 --- !u!114 &895719413
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -614,6 +615,22 @@ MonoBehaviour:
         m_CallState: 2
     m_ActionId: 1454a520-78d8-4340-b83e-6fab460cf1f0
     m_ActionName: Player/Restart[/Keyboard/r]
+  - m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 895719412}
+        m_TargetAssemblyTypeName: PlayerScript, Assembly-CSharp
+        m_MethodName: Rotate
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+    m_ActionId: b83a5c1b-cd07-4f97-b5d5-0984a49ca147
+    m_ActionName: Player/Rotate Camera[/Keyboard/q,/Keyboard/e]
   m_NeverAutoSwitchControlSchemes: 0
   m_DefaultControlScheme: Keyboard
   m_DefaultActionMap: Player
@@ -713,7 +730,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 963194225}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 1, z: -10}
+  m_LocalPosition: {x: 0, y: 3, z: -10}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []

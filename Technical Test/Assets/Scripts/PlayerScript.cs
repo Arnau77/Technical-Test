@@ -7,9 +7,15 @@ public class PlayerScript : TagsScript
 {
     public Rigidbody playerRigidbody = null;
 
+    private Vector2 movement = Vector2.zero;
+
     public float movementSpeed = 0;
 
     public float jumpSpeed = 0;
+
+    public float rotationAngle = 0;
+
+    private int isRotating = 0;
 
     private bool isOnGround = false;
 
@@ -20,11 +26,8 @@ public class PlayerScript : TagsScript
 
     public void Move(InputAction.CallbackContext context)
     {
-        Vector2 input = context.ReadValue<Vector2>() * movementSpeed;
-        Vector3 newVelocity = Vector3.zero;
-        newVelocity.x = input.x;
-        newVelocity.z = input.y;
-        playerRigidbody.velocity = newVelocity;
+        movement = context.ReadValue<Vector2>() * movementSpeed;
+        UpdateMovementDirection(movement);
     }
 
     public void Jump(InputAction.CallbackContext context)
@@ -35,6 +38,31 @@ public class PlayerScript : TagsScript
         }
         Vector3 newVelocity = playerRigidbody.velocity;
         newVelocity.y = jumpSpeed;
+        playerRigidbody.velocity = newVelocity;
+    }
+
+    public void Rotate(InputAction.CallbackContext context)
+    {
+        isRotating = (int)context.ReadValue<float>();
+    }
+
+    private void Update()
+    {
+        if (isRotating != 0)
+        {
+            transform.Rotate(0, rotationAngle * isRotating, 0);
+            UpdateMovementDirection(movement);
+        }
+    }
+
+    private void UpdateMovementDirection(Vector2 actualMovement)
+    {
+        Vector3 newVelocity = playerRigidbody.velocity;
+        newVelocity.x = actualMovement.y * transform.forward.x;
+        newVelocity.z = actualMovement.y * transform.forward.z;
+        newVelocity.x += actualMovement.x * transform.right.x;
+        newVelocity.z += actualMovement.x * transform.right.z;
+
         playerRigidbody.velocity = newVelocity;
     }
 
