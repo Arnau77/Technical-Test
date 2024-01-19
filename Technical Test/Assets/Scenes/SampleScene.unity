@@ -1449,6 +1449,7 @@ MonoBehaviour:
   movementSpeed: 15
   jumpSpeed: 15
   rotationSpeed: 45
+  distanceToCheckGroundRayCast: 1
 --- !u!114 &895719413
 MonoBehaviour:
   m_ObjectHideFlags: 0

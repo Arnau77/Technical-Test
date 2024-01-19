@@ -20,6 +20,8 @@ public class PlayerScript : TagsScript
 
     public float rotationSpeed = 0;
 
+    public float distanceToCheckGroundRayCast = 0;
+
     private int isRotating = 0;
 
     private void Start()
@@ -45,7 +47,7 @@ public class PlayerScript : TagsScript
 
     public void Jump(InputAction.CallbackContext context)
     {
-        if (!context.performed || playerRigidbody.velocity.y != 0)
+        if (!context.performed || !Physics.Raycast(transform.position, Vector3.down, distanceToCheckGroundRayCast))
         {
             return;
         }
@@ -90,6 +92,7 @@ public class PlayerScript : TagsScript
         {
             transform.parent = collision.transform;
         }
+
     }
 
     private void OnCollisionExit(Collision collision)
