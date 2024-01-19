@@ -38,7 +38,7 @@ public class CheckPointScript : MonoBehaviour
     private void Restart(GameObject checkPoint)
     {
         //If the checkpoint that the player is respawning is this, the checkpoints disables its mesh to avoid obstructing the player's vision
-        if (checkPoint.Equals(gameObject))
+        if (gameObject.Equals(checkPoint))
         {
             meshRenderer.enabled = false;
         }
