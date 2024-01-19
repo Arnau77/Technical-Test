@@ -8,13 +8,18 @@ public class GameManager : MonoBehaviour
 {
     public static GameManager instance = null;
 
-    public UnityEvent restartGame = new UnityEvent();
+    public UnityEvent<bool> restartGame = new UnityEvent<bool>();
+
+    public UnityEvent<Vector3> updatePosition = new UnityEvent<Vector3>();
 
     [SerializeField]
     private TextMeshProUGUI coinsText = null;
     
     [SerializeField]
     private GameObject victoryPanel = null;
+
+    [SerializeField]
+    private GameObject pausePanel = null;
 
     [SerializeField]
     private GameObject player = null;
@@ -43,6 +48,7 @@ public class GameManager : MonoBehaviour
     public void Restart(bool usingCheckpoint)
     {
         victoryPanel.SetActive(false);
+        PauseGame(false);
 
         foreach (GameObject coin in coins)
         {
@@ -58,12 +64,12 @@ public class GameManager : MonoBehaviour
             savedCoins.Clear();
         }
 
-        restartGame.Invoke();
+        restartGame.Invoke(usingCheckpoint);
 
         UpdateCoinText();
     }
 
-    public void Save()
+    public void Save(Transform transform)
     {
         savedCoins.Clear();
 
@@ -74,6 +80,8 @@ public class GameManager : MonoBehaviour
                 savedCoins.Add(coin);
             }
         }
+
+        updatePosition.Invoke(transform.position);
     }
 
     public void AddCoin(GameObject coin)
@@ -92,6 +100,7 @@ public class GameManager : MonoBehaviour
         {
             victoryPanel.SetActive(true);
             victoryPanelSource.Play();
+            PauseGame(true);
         }
     }
 
@@ -101,5 +110,21 @@ public class GameManager : MonoBehaviour
         {
             coinsText.text = coinsCollected.ToString();
         }
+    }
+
+    public void OpenPausePanel()
+    {
+        pausePanel.SetActive(true);
+        PauseGame(true);
+    }
+
+    public void PauseGame(bool isBeingPaused)
+    {
+        Time.timeScale = isBeingPaused ? 0 : 1;
+    }
+
+    public void Quit()
+    {
+        Application.Quit();
     }
 }

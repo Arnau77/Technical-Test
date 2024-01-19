@@ -40,6 +40,15 @@
                     "processors": "",
                     "interactions": "",
                     "initialStateCheck": false
+                },
+                {
+                    "name": "Open Pause Menu",
+                    "type": "Button",
+                    "id": "b64f9efc-4921-478d-a45f-68fcec74a135",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
                 }
             ],
             "bindings": [
@@ -189,7 +198,7 @@
                 {
                     "name": "",
                     "id": "59d1ac4f-f2e8-4b05-bfe0-9e64fbde2322",
-                    "path": "<Gamepad>/start",
+                    "path": "<Gamepad>/select",
                     "interactions": "",
                     "processors": "",
                     "groups": "Gamepad",
@@ -262,6 +271,28 @@
                     "action": "Rotate Camera",
                     "isComposite": false,
                     "isPartOfComposite": true
+                },
+                {
+                    "name": "",
+                    "id": "42fc7b02-09f1-4a3f-8f15-a807a020ee5c",
+                    "path": "<Keyboard>/escape",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "Keyboard",
+                    "action": "Open Pause Menu",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "574adcfe-0e3b-411f-b3c6-67657ee05312",
+                    "path": "<Gamepad>/start",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "Gamepad",
+                    "action": "Open Pause Menu",
+                    "isComposite": false,
+                    "isPartOfComposite": false
                 }
             ]
         }

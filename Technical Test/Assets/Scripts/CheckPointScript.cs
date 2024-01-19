@@ -32,7 +32,7 @@ public class CheckPointScript : TagsScript
 
         source.Play();
 
-        GameManager.instance.Save();
+        GameManager.instance.Save(transform);
 
         meshRenderer.enabled=false;
     }

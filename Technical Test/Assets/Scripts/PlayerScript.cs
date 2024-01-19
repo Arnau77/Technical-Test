@@ -14,6 +14,8 @@ public class PlayerScript : TagsScript
 
     public Vector3 initialPosition = Vector3.zero;
 
+    public Vector3 checkPointPosition = Vector3.zero;
+
     private Vector2 movement = Vector2.zero;
 
     public float movementSpeed = 0;
@@ -30,16 +32,22 @@ public class PlayerScript : TagsScript
     private void Start()
     {
         GameManager.instance.restartGame.AddListener(Restart);
+        GameManager.instance.updatePosition.AddListener(UpdateCheckPointPosition);
         initialPosition = transform.position;
     }
 
-    private void Restart()
+    private void Restart(bool isUsingCheckPoint)
     {
-        transform.position = initialPosition;
+        transform.position = isUsingCheckPoint ? checkPointPosition : initialPosition;
         transform.rotation = Quaternion.identity;
         movement = Vector2.zero;
         playerRigidbody.velocity = Vector3.zero;
         isRotating = 0;
+    }
+
+    private void UpdateCheckPointPosition(Vector3 position)
+    {
+        checkPointPosition = position;
     }
 
     public void Move(InputAction.CallbackContext context)
@@ -50,7 +58,7 @@ public class PlayerScript : TagsScript
 
     public void Jump(InputAction.CallbackContext context)
     {
-        if (!context.performed || ground == null)
+        if (!context.started || ground == null)
         {
             return;
         }

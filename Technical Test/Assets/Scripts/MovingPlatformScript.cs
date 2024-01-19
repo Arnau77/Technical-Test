@@ -26,7 +26,7 @@ public class MovingPlatformScript : TagsScript
         GameManager.instance.restartGame.AddListener(Restart);
     }
 
-    private void Restart()
+    private void Restart(bool isUsingCheckPoint)
     {
         transform.position = initialPosition;
         isActivated = false;
