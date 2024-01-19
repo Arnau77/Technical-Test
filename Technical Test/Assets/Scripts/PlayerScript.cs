@@ -10,6 +10,8 @@ public class PlayerScript : TagsScript
     [SerializeField]
     private AudioSource source = null;
 
+    private GameObject ground = null;
+
     public Vector3 initialPosition = Vector3.zero;
 
     private Vector2 movement = Vector2.zero;
@@ -23,6 +25,7 @@ public class PlayerScript : TagsScript
     public float distanceToCheckGroundRayCast = 0;
 
     private int isRotating = 0;
+
 
     private void Start()
     {
@@ -47,7 +50,7 @@ public class PlayerScript : TagsScript
 
     public void Jump(InputAction.CallbackContext context)
     {
-        if (!context.performed || !Physics.Raycast(transform.position, Vector3.down, distanceToCheckGroundRayCast))
+        if (!context.performed || ground == null)
         {
             return;
         }
@@ -93,6 +96,16 @@ public class PlayerScript : TagsScript
             transform.parent = collision.transform;
         }
 
+        ContactPoint[] contacts = new ContactPoint[collision.contactCount];
+        int contactCount = collision.GetContacts(contacts);
+        for (int i = 0; i < contactCount; ++i)
+        {
+            if (contacts[i].normal.y == 1)
+            {
+                ground = collision.gameObject;
+                return;
+            }
+        }
     }
 
     private void OnCollisionExit(Collision collision)
@@ -102,6 +115,11 @@ public class PlayerScript : TagsScript
             transform.parent = null;
         }
         UpdateMovementDirection(movement);
+        if (collision.gameObject.Equals(ground))
+        {
+            ground = null;
+            return;
+        }
     }
 
     private void OnTriggerEnter(Collider other)
