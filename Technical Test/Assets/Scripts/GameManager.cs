@@ -19,6 +19,12 @@ public class GameManager : MonoBehaviour
     [SerializeField]
     private GameObject player = null;
 
+    [SerializeField]
+    private AudioSource source = null;
+
+    [SerializeField]
+    private AudioSource victoryPanelSource = null;
+
     private List<GameObject> coins = new List<GameObject>();
 
     private List<GameObject> savedCoins = new List<GameObject>();
@@ -78,12 +84,14 @@ public class GameManager : MonoBehaviour
     public void GetCoin()
     {
         coinsCollected++;
+        source.Play();
 
         UpdateCoinText();
 
         if (coinsCollected == coins.Count && victoryPanel != null)
         {
             victoryPanel.SetActive(true);
+            victoryPanelSource.Play();
         }
     }
 

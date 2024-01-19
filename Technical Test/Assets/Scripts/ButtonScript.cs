@@ -15,6 +15,9 @@ public class ButtonScript : TagsScript
     [SerializeField]
     private Material buttonActivatedMaterial = null;
 
+    [SerializeField]
+    private AudioSource source = null;
+
     private bool isButtonActivated = false;
 
     private void Awake()
@@ -41,6 +44,7 @@ public class ButtonScript : TagsScript
         }
 
         isButtonActivated = true;
+        source.Play();
         ChangeMaterial(buttonActivatedMaterial);
         platformToActivate.Activate();
     }

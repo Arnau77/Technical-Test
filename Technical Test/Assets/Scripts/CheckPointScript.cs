@@ -6,6 +6,9 @@ public class CheckPointScript : TagsScript
 {
     private MeshRenderer meshRenderer = null;
 
+    [SerializeField]
+    private AudioSource source = null;
+
     // Start is called before the first frame update
     void Awake()
     {
@@ -26,6 +29,8 @@ public class CheckPointScript : TagsScript
         if (!CheckIfCollisionIsPlayer(other.gameObject)){
             return;
         }
+
+        source.Play();
 
         GameManager.instance.Save();
 

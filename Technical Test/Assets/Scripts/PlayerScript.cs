@@ -7,6 +7,9 @@ public class PlayerScript : TagsScript
 {
     public Rigidbody playerRigidbody = null;
 
+    [SerializeField]
+    private AudioSource source = null;
+
     public Vector3 initialPosition = Vector3.zero;
 
     private Vector2 movement = Vector2.zero;
@@ -106,6 +109,7 @@ public class PlayerScript : TagsScript
                 GameManager.instance.GetCoin();
                 break;
             case Tags.ENEMY or Tags.SPIKES:
+                source.Play();
                 GameManager.instance.Restart(true);
                 break;
         }
