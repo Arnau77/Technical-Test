@@ -657,6 +657,7 @@ GameObject:
   - component: {fileID: 258375027}
   - component: {fileID: 258375026}
   - component: {fileID: 258375025}
+  - component: {fileID: 258375028}
   m_Layer: 5
   m_Name: Pause Panel
   m_TagString: Untagged
@@ -726,6 +727,19 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 350, y: 220}
   m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &258375028
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 258375024}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8f8beef26dae3694a85ed4fdbe3ec186, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  button: {fileID: 1017467469}
 --- !u!1001 &316625029
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1159,7 +1173,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0, y: -30}
+  m_AnchoredPosition: {x: 0, y: -27}
   m_SizeDelta: {x: 160, y: 30}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &390430161
@@ -3544,6 +3558,7 @@ GameObject:
   - component: {fileID: 1110263330}
   - component: {fileID: 1110263332}
   - component: {fileID: 1110263331}
+  - component: {fileID: 1110263334}
   - component: {fileID: 1110263333}
   m_Layer: 5
   m_Name: Victory Panel
@@ -3709,6 +3724,19 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+--- !u!114 &1110263334
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1110263329}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8f8beef26dae3694a85ed4fdbe3ec186, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  button: {fileID: 2052739827}
 --- !u!1001 &1134754553
 PrefabInstance:
   m_ObjectHideFlags: 0

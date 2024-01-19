@@ -44,7 +44,7 @@ public class PlayerScript : TagsScript
 
     public void RestartButton(InputAction.CallbackContext context)
     {
-        if (context.performed)
+        if (context.performed && Time.timeScale != 0)
         {
             GameManager.instance.Restart(true);
         }
@@ -58,7 +58,7 @@ public class PlayerScript : TagsScript
 
     public void Jump(InputAction.CallbackContext context)
     {
-        if (!context.started || ground == null)
+        if (!context.started || ground == null || Time.timeScale == 0)
         {
             return;
         }
