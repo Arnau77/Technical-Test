@@ -51,12 +51,17 @@ Shader "Unlit/Cel Shader"
 
             fixed4 frag (v2f i) : SV_Target
             {
+                //Normalize the normal vector
                 float3 normalNormalized = normalize(i.worldNormal);
+                //Do the dot product between the normal and the light vector
                 float dotProduct = dot(_WorldSpaceLightPos0, normalNormalized);
+                //Make the dot product superior than 0 (delete the negative values)
                 dotProduct = max(0.0, dotProduct);
+                //Get the integer truncated of the division between the dot product and the shading bands property (the greater the number the less shading bands)
                 dotProduct = floor(dotProduct / _ShadingBands);
                 // sample the texture
                 fixed4 col = tex2D(_MainTex, i.uv);
+                //Retunr the multiplication of the dot product and its strength property, added the brigthness property, and finally, multiplicated again by the color got by the texture
                 return col * (dotProduct*_Strength + _Brightness);
             }
             ENDCG

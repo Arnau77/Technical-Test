@@ -113,6 +113,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   tags: -1
+  meshRenderer: {fileID: 993087986801114260}
   source: {fileID: 5571353837146853429}
 --- !u!82 &5571353837146853429
 AudioSource:

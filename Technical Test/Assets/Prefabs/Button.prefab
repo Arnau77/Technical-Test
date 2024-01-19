@@ -111,8 +111,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e0c399f88167bec43a5472a208a96fcd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  tags: 1
   platformToActivate: {fileID: 0}
+  buttonMeshRenderer: {fileID: 3628814849293550387}
   buttonDeactivatedMaterial: {fileID: 2100000, guid: 75c7d0be74a98de4ab7eb50778e3f7b3, type: 2}
   buttonActivatedMaterial: {fileID: 2100000, guid: 7f07f482e71648f49a51912556943b16, type: 2}
   source: {fileID: 8870428398639007737}

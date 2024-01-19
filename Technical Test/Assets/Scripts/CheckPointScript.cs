@@ -2,10 +2,13 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class CheckPointScript : TagsScript
+public class CheckPointScript : MonoBehaviour
 {
+    [Tooltip("The mesh renderer of the checkpoint")]
+    [SerializeField]
     private MeshRenderer meshRenderer = null;
 
+    [Tooltip("The audio source of the checkpoint (that will make a sound when the player touches it)")]
     [SerializeField]
     private AudioSource source = null;
 
@@ -14,7 +17,12 @@ public class CheckPointScript : TagsScript
     {
         if (meshRenderer == null)
         {
-            meshRenderer = GetComponent<MeshRenderer>();
+            meshRenderer = gameObject.GetComponent<MeshRenderer>();
+        }
+
+        if (source == null)
+        {
+            source = gameObject.GetComponent<AudioSource>();
         }
     }
 
@@ -23,9 +31,14 @@ public class CheckPointScript : TagsScript
         GameManager.instance.restartGame.AddListener(Restart);
     }
 
+    /// <summary>
+    /// This function is called when restarting the game
+    /// </summary>
+    /// <param name="checkPoint"> The checkpoint the game will restart from (if it's null, the game restarts from the beginning)</param>
     private void Restart(GameObject checkPoint)
     {
-        if (checkPoint == gameObject)
+        //If the checkpoint that the player is respawning is this, the checkpoints disables its mesh to avoid obstructing the player's vision
+        if (checkPoint.Equals(gameObject))
         {
             meshRenderer.enabled = false;
         }
@@ -33,34 +46,26 @@ public class CheckPointScript : TagsScript
 
     private void OnTriggerEnter(Collider other)
     {
-        if (!CheckIfCollisionIsPlayer(other.gameObject) || !meshRenderer.enabled){
+        if (other.tag != "Player" || !meshRenderer.enabled)
+        {
             return;
         }
 
         source.Play();
 
+        //Call the game manager to save the game in this checkpoint
         GameManager.instance.Save(gameObject);
 
-        meshRenderer.enabled=false;
+        //Disable the checkpoint's mesh to avoid obstructing the player's vision
+        meshRenderer.enabled = false;
     }
 
     private void OnTriggerExit(Collider other)
     {
-        if (!CheckIfCollisionIsPlayer(other.gameObject)){
-            return;
-        }
-        meshRenderer.enabled = true;
-    }
-
-    private bool CheckIfCollisionIsPlayer(GameObject collisionObject)
-    {
-        TagsScript tags = collisionObject.GetComponent<TagsScript>();
-
-        if (tags == null || tags.tags != Tags.PLAYER)
+        if (other.tag == "Player")
         {
-            return false;
+            //When the player exits the checkpoint, enable the mesh again to let the player know where is the checkpoint
+            meshRenderer.enabled = true;
         }
-
-        return true;
     }
 }

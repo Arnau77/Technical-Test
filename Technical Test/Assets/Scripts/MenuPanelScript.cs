@@ -5,10 +5,13 @@ using UnityEngine.UI;
 
 public class MenuPanelScript : MonoBehaviour
 {
-    public Button button = null;
+    [Tooltip("The button that will be selected when the menu is open")]
+    [SerializeField]
+    private Button buttonToBeSelected = null;
 
     private void OnEnable()
     {
-        button.Select();
+        //Select the button when the menu opens
+        buttonToBeSelected.Select();
     }
 }

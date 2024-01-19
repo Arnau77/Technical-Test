@@ -532,7 +532,6 @@ MonoBehaviour:
   coinsText: {fileID: 2137884993}
   victoryPanel: {fileID: 1110263329}
   pausePanel: {fileID: 258375024}
-  player: {fileID: 895719407}
   source: {fileID: 122259824}
   victoryPanelSource: {fileID: 1110263333}
 --- !u!4 &122259823
@@ -739,7 +738,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8f8beef26dae3694a85ed4fdbe3ec186, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  button: {fileID: 1017467469}
+  buttonToBeSelected: {fileID: 1017467469}
 --- !u!1001 &316625029
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -2224,7 +2223,7 @@ GameObject:
   - component: {fileID: 895719415}
   m_Layer: 0
   m_Name: Player
-  m_TagString: Untagged
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -2319,14 +2318,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 47bab387dbb23eb4f84e0f4ee999aa13, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  tags: 0
   playerRigidbody: {fileID: 895719414}
   source: {fileID: 895719415}
   initialPosition: {x: 0, y: 0, z: 0}
   movementSpeed: 15
   jumpSpeed: 15
   rotationSpeed: 45
-  distanceToCheckGroundRayCast: 1
 --- !u!114 &895719413
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3736,7 +3733,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8f8beef26dae3694a85ed4fdbe3ec186, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  button: {fileID: 2052739827}
+  buttonToBeSelected: {fileID: 2052739827}
 --- !u!1001 &1134754553
 PrefabInstance:
   m_ObjectHideFlags: 0
