@@ -18,7 +18,7 @@ public class PlayerScript : TagsScript
 
     public float jumpSpeed = 0;
 
-    public float rotationAngle = 0;
+    public float rotationSpeed = 0;
 
     private int isRotating = 0;
 
@@ -63,7 +63,7 @@ public class PlayerScript : TagsScript
     {
         if (isRotating != 0)
         {
-            transform.Rotate(0, rotationAngle * isRotating, 0);
+            transform.Rotate(0, rotationSpeed * isRotating * Time.deltaTime, 0);
             UpdateMovementDirection(movement);
         }
 
