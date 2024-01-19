@@ -30,7 +30,7 @@ public class ButtonScript : TagsScript
         GameManager.instance.restartGame.AddListener(Restart);
     }
 
-    private void Restart(bool isUsingCheckPoint)
+    private void Restart(GameObject checkPoint)
     {
         isButtonActivated = false;
         ChangeMaterial(buttonDeactivatedMaterial);

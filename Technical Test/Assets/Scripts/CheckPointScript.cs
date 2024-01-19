@@ -18,21 +18,28 @@ public class CheckPointScript : TagsScript
         }
     }
 
-    // Update is called once per frame
-    void Update()
+    private void Start()
     {
-        
+        GameManager.instance.restartGame.AddListener(Restart);
+    }
+
+    private void Restart(GameObject checkPoint)
+    {
+        if (checkPoint == gameObject)
+        {
+            meshRenderer.enabled = false;
+        }
     }
 
     private void OnTriggerEnter(Collider other)
     {
-        if (!CheckIfCollisionIsPlayer(other.gameObject)){
+        if (!CheckIfCollisionIsPlayer(other.gameObject) || !meshRenderer.enabled){
             return;
         }
 
         source.Play();
 
-        GameManager.instance.Save(transform);
+        GameManager.instance.Save(gameObject);
 
         meshRenderer.enabled=false;
     }
@@ -42,7 +49,6 @@ public class CheckPointScript : TagsScript
         if (!CheckIfCollisionIsPlayer(other.gameObject)){
             return;
         }
-
         meshRenderer.enabled = true;
     }
 

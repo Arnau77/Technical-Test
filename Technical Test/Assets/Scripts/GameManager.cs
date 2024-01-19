@@ -8,9 +8,7 @@ public class GameManager : MonoBehaviour
 {
     public static GameManager instance = null;
 
-    public UnityEvent<bool> restartGame = new UnityEvent<bool>();
-
-    public UnityEvent<Vector3> updatePosition = new UnityEvent<Vector3>();
+    public UnityEvent<GameObject> restartGame = new UnityEvent<GameObject>();
 
     [SerializeField]
     private TextMeshProUGUI coinsText = null;
@@ -23,6 +21,8 @@ public class GameManager : MonoBehaviour
 
     [SerializeField]
     private GameObject player = null;
+
+    private GameObject lastCheckPoint = null;
 
     [SerializeField]
     private AudioSource source = null;
@@ -61,17 +61,20 @@ public class GameManager : MonoBehaviour
 
         if (!usingCheckpoint)
         {
+            lastCheckPoint = null;
             savedCoins.Clear();
         }
 
-        restartGame.Invoke(usingCheckpoint);
+        restartGame.Invoke(lastCheckPoint);
 
         UpdateCoinText();
     }
 
-    public void Save(Transform transform)
+    public void Save(GameObject checkPoint)
     {
         savedCoins.Clear();
+
+        lastCheckPoint = checkPoint;
 
         foreach (GameObject coin in coins)
         {
@@ -80,8 +83,6 @@ public class GameManager : MonoBehaviour
                 savedCoins.Add(coin);
             }
         }
-
-        updatePosition.Invoke(transform.position);
     }
 
     public void AddCoin(GameObject coin)
